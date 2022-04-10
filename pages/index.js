@@ -1,7 +1,4 @@
-import Head from "next/head"
-import Image from "next/image"
-import styles from "../styles/Home.module.css"
-import { Container, Table } from "@mantine/core"
+import { Container, Header, Space, Table, TextInput } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { SortAscendingIcon, SortDescendingIcon } from "@heroicons/react/solid"
 
@@ -9,6 +6,7 @@ export default function Home() {
 	const [countryData, setCountryData] = useState([])
 	const [ascending, setAscending] = useState(false)
 	const [ascendingPop, setAscendingPop] = useState(true)
+	const [searchValue, setSearchValue] = useState("")
 
 	async function fetchData() {
 		try {
@@ -97,8 +95,32 @@ export default function Home() {
 		}
 	}
 
+	// function searchCountries(e) {
+	// 	let input = e.target.value.toLowerCase()
+
+	// 	if (input !== "") {
+	// 		setCountryData(
+	// 			countryData.filter((country) =>
+	// 				country.name.toLowerCase().includes(input)
+	// 			)
+	// 		)
+	// 	}
+	// 	if (input === "") {
+	// 		setCountryData([])
+	// 		fetchData()
+	// 	}
+	// }
+
 	return (
 		<Container style={{ marginTop: "5rem" }}>
+			<TextInput
+				onChange={(e) => {
+					setSearchValue(e.target.value.toLowerCase())
+				}}
+				placeholder="Search"
+				size="lg"
+			/>
+			<Space h="xl" />
 			<Table
 				horizontalSpacing="md"
 				verticalSpacing="md"
@@ -151,15 +173,19 @@ export default function Home() {
 				</thead>
 				<tbody>
 					{countryData &&
-						countryData.map((country) => (
-							<tr key={Math.floor(Math.random() * 999999)}>
-								<td>{country.name}</td>
-								<td>{country.capital}</td>
-								<td>{country.population}</td>
-								<td>{country.flag}</td>
-								<td>{country.continent}</td>
-							</tr>
-						))}
+						countryData
+							.filter((country) =>
+								country.name.toLowerCase().includes(searchValue)
+							)
+							.map((country) => (
+								<tr key={Math.floor(Math.random() * 9999999)}>
+									<td>{country.name}</td>
+									<td>{country.capital}</td>
+									<td>{country.population}</td>
+									<td>{country.flag}</td>
+									<td>{country.continent}</td>
+								</tr>
+							))}
 				</tbody>
 			</Table>
 		</Container>
