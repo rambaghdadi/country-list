@@ -121,19 +121,14 @@ export default function Home() {
 		}
 	}
 
-	function handlePin(country) {
-		console.log(country)
-		countryData.unshift(country)
-	}
-
 	return (
 		<Container style={{ marginTop: "5rem" }}>
 			<Center>
 				<Text
 					style={{
 						fontSize: "3rem",
-						fontWeight: "600",
-						fontFamily: "Arial",
+						fontWeight: "500",
+						fontFamily: "Poppins, sans-serif",
 						color: "#222",
 					}}
 				>
@@ -156,6 +151,7 @@ export default function Home() {
 			</Center>
 			{!loading && (
 				<Table
+					style={{ fontFamily: "Poppins, sans-serif" }}
 					horizontalSpacing="xl"
 					verticalSpacing="md"
 					fontSize="md"
