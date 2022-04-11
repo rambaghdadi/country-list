@@ -1,4 +1,4 @@
-import { Container, Header, Space, Table, TextInput } from "@mantine/core"
+import { Center, Container, Space, Table, Text, TextInput } from "@mantine/core"
 import { useEffect, useState } from "react"
 import { SortAscendingIcon, SortDescendingIcon } from "@heroicons/react/solid"
 
@@ -113,6 +113,21 @@ export default function Home() {
 
 	return (
 		<Container style={{ marginTop: "5rem" }}>
+			<Center>
+				{" "}
+				<Text
+					style={{
+						fontSize: "3rem",
+						fontWeight: "600",
+						fontFamily: "Arial",
+						color: "#222",
+					}}
+				>
+					All Countries
+				</Text>
+			</Center>
+			<Space h="xl" />
+			<Space h="xl" />
 			<TextInput
 				onChange={(e) => {
 					setSearchValue(e.target.value.toLowerCase())
@@ -122,7 +137,7 @@ export default function Home() {
 			/>
 			<Space h="xl" />
 			<Table
-				horizontalSpacing="md"
+				horizontalSpacing="xl"
 				verticalSpacing="md"
 				fontSize="md"
 				striped
@@ -139,7 +154,7 @@ export default function Home() {
 								}}
 							>
 								<span>Country</span>
-								<div onClick={sortAlphabetical}>
+								<div style={{ cursor: "pointer" }} onClick={sortAlphabetical}>
 									{ascending ? (
 										<SortAscendingIcon height={25} width={25} />
 									) : (
@@ -182,7 +197,7 @@ export default function Home() {
 									<td>{country.name}</td>
 									<td>{country.capital}</td>
 									<td>{country.population}</td>
-									<td>{country.flag}</td>
+									<td style={{ fontSize: "4rem" }}>{country.flag}</td>
 									<td>{country.continent}</td>
 								</tr>
 							))}
